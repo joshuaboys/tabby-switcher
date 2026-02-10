@@ -27,7 +27,7 @@ Tabby has no built-in quick tab switcher. Managing many terminals with tabs and 
 
 | Module | Purpose | Status | Dependencies |
 |--------|---------|--------|--------------|
-| [tmux](./modules/tmux.aps.md) | tmux session/window/pane navigation | In Progress | — |
+| [tmux](./modules/tmux.aps.md) | tmux session/window/pane navigation | Complete | — |
 | [npm-publish](./modules/npm-publish.aps.md) | Publish to npm registry | Draft | tmux |
 | [enhancements](./modules/enhancements.aps.md) | Future feature ideas | Draft | npm-publish |
 
@@ -41,7 +41,7 @@ Tabby has no built-in quick tab switcher. Managing many terminals with tabs and 
 
 ## Open Questions
 
-- [ ] Is `tabby-switcher` available on npm?
+- [x] Is `tabby-switcher` available on npm? — Yes, name is available
 - [ ] Should we add a `repository` field to package.json for npm?
 
 ## Decisions

@@ -37,6 +37,10 @@ export class SwitcherHotkeyProvider extends HotkeyProvider {
                 id: 'tmux-new-session',
                 name: 'Create new tmux session',
             },
+            {
+                id: 'tmux-new-window',
+                name: 'Create new tmux window',
+            },
         ]
     }
 }

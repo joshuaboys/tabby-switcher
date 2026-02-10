@@ -49,6 +49,9 @@ export default class SwitcherModule {
                 case 'tmux-new-session':
                     tmux.showNewSession()
                     break
+                case 'tmux-new-window':
+                    tmux.showNewWindow()
+                    break
             }
         })
     }

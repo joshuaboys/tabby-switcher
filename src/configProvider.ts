@@ -13,6 +13,7 @@ export class SwitcherConfigProvider extends ConfigProvider {
             'tmux-rename': ['Alt-Shift-R'],
             'tmux-kill': ['Alt-Shift-W'],
             'tmux-new-session': ['Alt-Shift-N'],
+            'tmux-new-window': ['Alt-Shift-M'],
         },
     }
 
@@ -27,6 +28,7 @@ export class SwitcherConfigProvider extends ConfigProvider {
                 'tmux-rename': ['Alt-Shift-R'],
                 'tmux-kill': ['Alt-Shift-W'],
                 'tmux-new-session': ['Alt-Shift-N'],
+                'tmux-new-window': ['Alt-Shift-M'],
             },
         },
         darwin: {
@@ -39,6 +41,7 @@ export class SwitcherConfigProvider extends ConfigProvider {
                 'tmux-rename': ['Cmd-Alt-R'],
                 'tmux-kill': ['Cmd-Alt-W'],
                 'tmux-new-session': ['Cmd-Alt-N'],
+                'tmux-new-window': ['Cmd-Alt-M'],
             },
         },
         win32: {
@@ -51,6 +54,7 @@ export class SwitcherConfigProvider extends ConfigProvider {
                 'tmux-rename': ['Alt-Shift-R'],
                 'tmux-kill': ['Alt-Shift-W'],
                 'tmux-new-session': ['Alt-Shift-N'],
+                'tmux-new-window': ['Alt-Shift-M'],
             },
         },
     }

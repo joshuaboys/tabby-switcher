@@ -316,4 +316,49 @@ export class TmuxService {
             // User dismissed
         }
     }
+
+    /** Pick a session, optionally name the window, and create a new tmux window. */
+    async showNewWindow (): Promise<void> {
+        if (!this.isAvailable()) {
+            this.notifications.error('tmux is not running')
+            return
+        }
+
+        const sessions = this.listSessions()
+        if (sessions.length === 0) {
+            return
+        }
+
+        try {
+            const options: SelectorOption<string>[] = sessions.map(s => ({
+                name: s.name,
+                description: `${s.windows} window${s.windows !== 1 ? 's' : ''}`,
+                icon: 'fas fa-plus',
+                result: s.name,
+            }))
+
+            const session = await this.selector.show<string>('New window in session', options)
+            if (!session) {
+                return
+            }
+
+            const modal = this.ngbModal.open(PromptModalComponent)
+            modal.componentInstance.value = ''
+            modal.componentInstance.showRememberCheckbox = false
+
+            const result = await modal.result
+            if (result?.value != null) {
+                const name = result.value.trim()
+                if (name.length > 0) {
+                    this.exec(`tmux new-window -t "${session}" -n "${name}"`)
+                    this.notifications.info(`Window "${name}" created in ${session}`)
+                } else {
+                    this.exec(`tmux new-window -t "${session}"`)
+                    this.notifications.info(`New window created in ${session}`)
+                }
+            }
+        } catch {
+            // User dismissed
+        }
+    }
 }
