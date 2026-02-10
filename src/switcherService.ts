@@ -5,7 +5,6 @@ export interface TabEntry {
     tab: any
     title: string
     index: number
-    icon?: string
     color?: string
 }
 
@@ -28,7 +27,6 @@ export class SwitcherService {
                         tab: child,
                         title: child.customTitle || child.title,
                         index: i + 1,
-                        icon: child.icon ?? undefined,
                         color: child.color ?? undefined,
                     })
                 }
@@ -37,7 +35,6 @@ export class SwitcherService {
                         tab,
                         title: tab.customTitle || tab.title,
                         index: i + 1,
-                        icon: tab.icon ?? undefined,
                         color: tab.color ?? undefined,
                     })
                 }
@@ -46,7 +43,6 @@ export class SwitcherService {
                     tab,
                     title: tab.customTitle || tab.title,
                     index: i + 1,
-                    icon: tab.icon ?? undefined,
                     color: tab.color ?? undefined,
                 })
             }
@@ -64,7 +60,6 @@ export class SwitcherService {
         const options: SelectorOption<TabEntry>[] = entries.map(entry => ({
             name: entry.title || `Tab ${entry.index}`,
             description: `Tab #${entry.index}`,
-            icon: entry.icon,
             color: entry.color,
             result: entry,
         }))

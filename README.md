@@ -39,7 +39,7 @@ The hotkey is fully configurable in **Settings > Hotkeys** under "Show the tab s
 
 - Lists all open tabs across the window, including child panes in split views
 - Uses Tabby's native selector modal with built-in fuzzy search
-- Shows tab icons and colors in the list
+- Shows tab colors in the list
 - Correctly focuses child panes inside split layouts
 - Single hotkey, zero configuration required
 

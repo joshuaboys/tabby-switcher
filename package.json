@@ -1,6 +1,6 @@
 {
   "name": "tabby-switcher",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Quick tab switcher for Tabby — fuzzy-search and jump to any open tab with a hotkey",
   "keywords": [
     "tabby-plugin"
