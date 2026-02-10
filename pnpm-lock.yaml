@@ -14,6 +14,9 @@ importers:
       '@angular/core':
         specifier: ^12.0.0
         version: 12.2.17(rxjs@6.6.7)(zone.js@0.11.8)
+      '@ng-bootstrap/ng-bootstrap':
+        specifier: ^6.2.0
+        version: 6.2.0(@angular/common@12.2.17(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(rxjs@6.6.7))(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(@angular/forms@9.1.13(@angular/common@12.2.17(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(rxjs@6.6.7))(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(@angular/platform-browser@9.1.13(@angular/animations@9.1.13(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(tslib@2.8.1))(@angular/common@12.2.17(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(rxjs@6.6.7))(@angular/core@12.2.17(rxjs@6.6.7)(zone.js@0.11.8))(tslib@2.8.1))(rxjs@6.6.7)(tslib@2.8.1))(@angular/localize@9.1.13)(rxjs@6.6.7)(tslib@2.8.1)
       tabby-core:
         specifier: ^1.0.0
         version: 1.0.163(c551c402667541af30ada27a5c581a22)

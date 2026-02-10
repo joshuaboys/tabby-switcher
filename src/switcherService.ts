@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { AppService, SelectorOption, SelectorService, SplitTabComponent } from 'tabby-core'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { AppService, NotificationsService, PromptModalComponent, SelectorOption, SelectorService, SplitTabComponent } from 'tabby-core'
 
 export interface TabEntry {
     tab: any
@@ -13,6 +14,8 @@ export class SwitcherService {
     constructor (
         private app: AppService,
         private selector: SelectorService,
+        private ngbModal: NgbModal,
+        private notifications: NotificationsService,
     ) {}
 
     /** Collect every visible tab, including children inside split panes. */
@@ -50,35 +53,103 @@ export class SwitcherService {
         return entries
     }
 
-    /** Show the quick-switch selector modal and focus the chosen tab. */
-    async show (): Promise<void> {
-        const entries = this.collectTabs()
-        if (entries.length === 0) {
-            return
-        }
-
-        const options: SelectorOption<TabEntry>[] = entries.map(entry => ({
+    private buildOptions (icon?: string): SelectorOption<TabEntry>[] {
+        return this.collectTabs().map(entry => ({
             name: entry.title || `Tab ${entry.index}`,
             description: `Tab #${entry.index}`,
             color: entry.color,
+            icon,
             result: entry,
         }))
+    }
+
+    /** Show the quick-switch selector modal and focus the chosen tab. */
+    async show (): Promise<void> {
+        const options = this.buildOptions()
+        if (options.length === 0) {
+            return
+        }
 
         try {
             const selected = await this.selector.show<TabEntry>('Switch to tab', options)
             if (selected) {
-                // If the selected tab lives inside a SplitTabComponent, focus the
-                // parent first, then focus the child pane.
                 if (selected.tab.parent && selected.tab.parent !== selected.tab) {
                     this.app.selectTab(selected.tab.parent)
-                    // Give the parent a tick to render, then focus the child
                     setTimeout(() => selected.tab.emitFocused(), 50)
                 } else {
                     this.app.selectTab(selected.tab)
                 }
             }
         } catch {
-            // User dismissed the selector — nothing to do
+            // User dismissed the selector
+        }
+    }
+
+    /** Show the tab selector, then open a rename prompt for the chosen tab. */
+    async showRename (): Promise<void> {
+        const options = this.buildOptions('fas fa-pen')
+        if (options.length === 0) {
+            return
+        }
+
+        try {
+            const selected = await this.selector.show<TabEntry>('Rename tab', options)
+            if (!selected) {
+                return
+            }
+
+            const modal = this.ngbModal.open(PromptModalComponent)
+            modal.componentInstance.value = selected.tab.customTitle || selected.tab.title
+            modal.componentInstance.showRememberCheckbox = false
+
+            const result = await modal.result
+            if (result?.value != null) {
+                const newTitle = result.value.trim()
+                if (newTitle.length > 0) {
+                    selected.tab.setTitle(newTitle)
+                    selected.tab.customTitle = newTitle
+                    this.notifications.info(`Tab renamed to "${newTitle}"`)
+                }
+            }
+        } catch {
+            // User dismissed the selector or prompt
+        }
+    }
+
+    /** Show the tab selector, then close the chosen tab. */
+    async showClose (): Promise<void> {
+        const options = this.buildOptions('fas fa-times')
+        if (options.length === 0) {
+            return
+        }
+
+        try {
+            const selected = await this.selector.show<TabEntry>('Close tab', options)
+            if (selected) {
+                await this.app.closeTab(selected.tab, true)
+            }
+        } catch {
+            // User dismissed the selector
+        }
+    }
+
+    /** Show the tab selector, then duplicate the chosen tab. */
+    async showDuplicate (): Promise<void> {
+        const options = this.buildOptions('fas fa-copy')
+        if (options.length === 0) {
+            return
+        }
+
+        try {
+            const selected = await this.selector.show<TabEntry>('Duplicate tab', options)
+            if (selected) {
+                const newTab = await this.app.duplicateTab(selected.tab)
+                if (newTab) {
+                    this.notifications.info('Tab duplicated')
+                }
+            }
+        } catch {
+            // User dismissed the selector
         }
     }
 }

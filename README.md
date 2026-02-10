@@ -26,14 +26,16 @@ TABBY_PLUGINS=$(pwd) tabby --debug
 
 ## Usage
 
-| Platform      | Default Hotkey        |
-|---------------|-----------------------|
-| Linux / Win   | `Ctrl+Shift+T`       |
-| macOS         | `Cmd+Shift+T`        |
+| Action         | Linux / Win        | macOS              |
+|----------------|--------------------|--------------------|
+| Switch to tab  | `Ctrl+Shift+T`    | `Cmd+Shift+T`     |
+| Rename tab     | `Ctrl+Shift+R`    | `Cmd+Shift+R`     |
+| Close tab      | `Ctrl+Shift+W`    | `Cmd+Shift+W`     |
+| Duplicate tab  | `Ctrl+Shift+D`    | `Cmd+Shift+D`     |
 
-Press the hotkey to open the switcher. Start typing to filter tabs by title, then press Enter to jump to your selection.
+Press a hotkey to open the selector. Start typing to filter tabs by title, then press Enter to pick one.
 
-The hotkey is fully configurable in **Settings > Hotkeys** under "Show the tab switcher".
+All hotkeys are configurable in **Settings > Hotkeys**.
 
 ## Features
 
@@ -41,7 +43,9 @@ The hotkey is fully configurable in **Settings > Hotkeys** under "Show the tab s
 - Uses Tabby's native selector modal with built-in fuzzy search
 - Shows tab colors in the list
 - Correctly focuses child panes inside split layouts
-- Single hotkey, zero configuration required
+- **Rename any tab** — pick a tab, type the new name, done
+- **Quick close** — pick a tab to close it (respects unsaved-state prompts)
+- **Duplicate** — pick a tab to clone it
 
 ## Development
 

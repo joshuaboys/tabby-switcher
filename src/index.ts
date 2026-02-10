@@ -22,8 +22,19 @@ export default class SwitcherModule {
         switcher: SwitcherService,
     ) {
         hotkeys.hotkey$.subscribe(hotkeyId => {
-            if (hotkeyId === 'switcher-show') {
-                switcher.show()
+            switch (hotkeyId) {
+                case 'switcher-show':
+                    switcher.show()
+                    break
+                case 'switcher-rename':
+                    switcher.showRename()
+                    break
+                case 'switcher-close':
+                    switcher.showClose()
+                    break
+                case 'switcher-duplicate':
+                    switcher.showDuplicate()
+                    break
             }
         })
     }

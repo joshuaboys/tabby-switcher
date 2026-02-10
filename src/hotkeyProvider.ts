@@ -9,6 +9,18 @@ export class SwitcherHotkeyProvider extends HotkeyProvider {
                 id: 'switcher-show',
                 name: 'Show the tab switcher',
             },
+            {
+                id: 'switcher-rename',
+                name: 'Rename a tab (via switcher)',
+            },
+            {
+                id: 'switcher-close',
+                name: 'Close a tab (via switcher)',
+            },
+            {
+                id: 'switcher-duplicate',
+                name: 'Duplicate a tab (via switcher)',
+            },
         ]
     }
 }
