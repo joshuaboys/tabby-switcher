@@ -21,6 +21,22 @@ export class SwitcherHotkeyProvider extends HotkeyProvider {
                 id: 'switcher-duplicate',
                 name: 'Duplicate a tab (via switcher)',
             },
+            {
+                id: 'tmux-switch',
+                name: 'Switch tmux session/window/pane',
+            },
+            {
+                id: 'tmux-rename',
+                name: 'Rename tmux session or window',
+            },
+            {
+                id: 'tmux-kill',
+                name: 'Kill tmux session/window/pane',
+            },
+            {
+                id: 'tmux-new-session',
+                name: 'Create new tmux session',
+            },
         ]
     }
 }

@@ -27,7 +27,8 @@ Tabby has no built-in quick tab switcher. Managing many terminals with tabs and 
 
 | Module | Purpose | Status | Dependencies |
 |--------|---------|--------|--------------|
-| [npm-publish](./modules/npm-publish.aps.md) | Publish to npm registry | Draft | — |
+| [tmux](./modules/tmux.aps.md) | tmux session/window/pane navigation | In Progress | — |
+| [npm-publish](./modules/npm-publish.aps.md) | Publish to npm registry | Draft | tmux |
 | [enhancements](./modules/enhancements.aps.md) | Future feature ideas | Draft | npm-publish |
 
 ## Risks

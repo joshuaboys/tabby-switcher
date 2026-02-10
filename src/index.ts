@@ -5,6 +5,7 @@ import TabbyCoreModule, { ConfigProvider, HotkeyProvider, HotkeysService } from 
 import { SwitcherConfigProvider } from './configProvider'
 import { SwitcherHotkeyProvider } from './hotkeyProvider'
 import { SwitcherService } from './switcherService'
+import { TmuxService } from './tmuxService'
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ export default class SwitcherModule {
     constructor (
         hotkeys: HotkeysService,
         switcher: SwitcherService,
+        tmux: TmuxService,
     ) {
         hotkeys.hotkey$.subscribe(hotkeyId => {
             switch (hotkeyId) {
@@ -34,6 +36,18 @@ export default class SwitcherModule {
                     break
                 case 'switcher-duplicate':
                     switcher.showDuplicate()
+                    break
+                case 'tmux-switch':
+                    tmux.showSwitch()
+                    break
+                case 'tmux-rename':
+                    tmux.showRename()
+                    break
+                case 'tmux-kill':
+                    tmux.showKill()
+                    break
+                case 'tmux-new-session':
+                    tmux.showNewSession()
                     break
             }
         })
